@@ -197,7 +197,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				_, ok := m.selected[options(m.cursor)]
 				if ok {
 					m.selected = make(map[options]struct{})
-				} else {
+				} else if m.cursor >= 0 {
 					m.selected = make(map[options]struct{})
 					m.selected[options(m.cursor)] = struct{}{}
 					s.Push(m.cursor)
