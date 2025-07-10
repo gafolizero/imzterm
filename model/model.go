@@ -73,6 +73,11 @@ var style3 = lipgloss.NewStyle().
 	Blink(true).
 	Foreground(lipgloss.Color("198"))
 
+var style4 = lipgloss.NewStyle().
+	Italic(true).
+	Blink(true).
+	Foreground(lipgloss.Color("#5C5C5C"))
+
 func NewModel(img imgName) *Model {
 	fm := make(map[options]any)
 
@@ -340,8 +345,11 @@ func (m Model) View() string {
 		sl = "History =>"
 	}
 
+    instruction := "\nSpace = Select, Undo = Ctrl+z, Quit and Save = q/Ctrl+c"
+
+
 	for i := range len(s.History) {
 		sl += fmt.Sprintf(" > %v ", m.option[s.History[i]])
 	}
-	return styledLogo.String() + outLine.String() + style3.Render(sl)
+	return styledLogo.String() + outLine.String() + style3.Render(sl) + style4.Render(instruction)
 }
